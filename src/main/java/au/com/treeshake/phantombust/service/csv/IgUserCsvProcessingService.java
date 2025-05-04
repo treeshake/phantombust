@@ -18,7 +18,7 @@ public record IgUserCsvProcessingService(IgUserRepository repository,
                                          CsvProcessor<IgUserDto> csvProcessor) {
 
     public void importFile() throws IOException {
-        URL resource = Objects.requireNonNull(IgFollowingCsvProcessingService.class.getResource("/data/ig-user/user-list.csv"));
+        URL resource = Objects.requireNonNull(IgFollowingCsvProcessingService.class.getResource("/data/ig-user/instagram-follower-collector-2022-parsed.csv"));
         File file = new File(resource.getFile());
         csvProcessor.processFile(file, converter, repository);
     }

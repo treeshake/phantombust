@@ -33,8 +33,6 @@ public record CsvProcessor<D>(CsvDataEntry dataEntry, CsvMapper csvMapper, Class
         File file, Converter<D, E> converter, JpaRepository<E, Long> repository,
         Map<String, String> cachedQueries) throws IOException {
 
-//        file = sanitiseFile(file);
-
         LineIterator lineIterator = FileUtils.lineIterator(file, "UTF-8");
         while (lineIterator.hasNext()) {
             try {
@@ -97,51 +95,4 @@ public record CsvProcessor<D>(CsvDataEntry dataEntry, CsvMapper csvMapper, Class
             .readValues(dataEntry.getCurrentLine().getData());
         return mappingIterator.next();
     }
-
-    /**
-     * This method helps to sanitise the given data file.
-     * If the user profiles span through multiple files, this method combine them into
-     * a single file. Although the resulting file will contain those profiles with
-     * missing new line characters.
-     *
-     * @param file The dirty file
-     * @return The sanitised file
-     * @throws IOException If file is not found or something else bad happens
-     */
-//    public File sanitiseFile(File file) throws IOException {
-//
-//        File newFile = File.createTempFile("current.csv", "tmp");
-//        FileWriter fileWriter = new FileWriter(newFile);
-//
-//        LineIterator lineIterator = FileUtils.lineIterator(file, "UTF-8");
-//
-//        String headerRow = lineIterator.next();
-//        int columnCount = (int) (headerRow.chars().filter(num -> num == ',').count() + 1);
-//
-//        StringBuilder currentProfile;
-//
-//        fileWriter.write(headerRow);
-//        fileWriter.write("\n");
-//
-//        while (lineIterator.hasNext()) {
-//
-//            currentProfile = new StringBuilder(lineIterator.next());
-//
-//            int columnsInRow = (int) (currentProfile.chars().filter(num -> num == ',').count() + 1);
-//
-//            while (columnsInRow < columnCount) {
-//
-//                // Insert space before appending next line
-//                currentProfile.append(" ");
-//                currentProfile.append(lineIterator.next());
-//                columnsInRow = (int) (currentProfile.chars().filter(num -> num == ',').count() + 1);
-//            }
-//
-//            fileWriter.write(currentProfile.toString());
-//            fileWriter.write("\n");
-//        }
-//
-//        fileWriter.flush();
-//        return newFile;
-//    }
 }

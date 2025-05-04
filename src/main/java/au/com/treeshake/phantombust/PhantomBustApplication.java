@@ -1,6 +1,6 @@
 package au.com.treeshake.phantombust;
 
-import au.com.treeshake.phantombust.service.csv.IgProfileCsvProcessingService;
+import au.com.treeshake.phantombust.service.export.IgFollowerCsvExportService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -15,9 +15,22 @@ public class PhantomBustApplication {
         ConfigurableApplicationContext ctx = SpringApplication.run(PhantomBustApplication.class, args);
 //        IgFollowingCsvProcessingService bean = ctx.getBean(IgFollowingCsvProcessingService.class);
 //        bean.importFile();
-//        IgUserCsvProcessorService bean = ctx.getBean(IgUserCsvProcessorService.class);
+
+//        IgUserCsvProcessingService bean = ctx.getBean(IgUserCsvProcessingService.class);
 //        bean.importFile();
-        IgProfileCsvProcessingService bean = ctx.getBean(IgProfileCsvProcessingService.class);
-        bean.importFile();
+
+        // Import profiles
+//        IgProfileCsvProcessingService bean = ctx.getBean(IgProfileCsvProcessingService.class);
+//        bean.importFile();
+
+        // Fix profiles (too many lines on the profile)
+//        IgProfileLineFormatService formatProfile = ctx.getBean(IgProfileLineFormatService.class);
+//        formatProfile.importFile();
+
+//        JsonImportRunner runner = ctx.getBean(JsonImportRunner.class);
+//        runner.runImport();
+
+        IgFollowerCsvExportService exporter = ctx.getBean(IgFollowerCsvExportService.class);
+        exporter.export();
     }
 }

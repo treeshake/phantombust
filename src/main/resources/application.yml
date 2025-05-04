@@ -11,7 +11,8 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:postgresql://phantombust_db:5432/phantombust
+#    url: jdbc:postgresql://phantombust_db:5432/phantombust
+    url: jdbc:postgresql://localhost:5430/phantombust
     username: phantombust
     password: phantombust
   jpa:

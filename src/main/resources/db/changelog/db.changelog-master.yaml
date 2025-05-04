@@ -5,3 +5,9 @@ databaseChangeLog:
   - include:
       file: db/changelog/sql/ALTER_TABLES.sql
       context: create
+  - include:
+      file: db/changelog/sql/CREATE_TABLE_IG_FOLLOWER.sql
+      context: create
+  - include:
+      file: db/changelog/sql/ALTER_TABLE_IG_FOLLOWER_1.sql
+      context: create
